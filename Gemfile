@@ -20,6 +20,7 @@ gem "jquery-rails"
 # Git. Remember to move these dependencies to your gemspec before releasing
 # your gem to rubygems.org.
 gem 'acts_as_list', :git => 'git://github.com/swanandp/acts_as_list.git'
+gem 'isbn-tools', :git => 'git://github.com/nabeta/isbn-tools.git', :require => 'isbn/tools'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'

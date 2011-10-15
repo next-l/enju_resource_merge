@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/nabeta/isbn-tools.git
+  revision: 05e31384f167aa7d1e560f76c1c3faf104d64709
+  specs:
+    isbn-tools (0.2.0)
+
+GIT
   remote: git://github.com/swanandp/acts_as_list.git
   revision: ec97d512ba792fa072c55cbb9447d83c067e611f
   specs:
@@ -150,6 +156,7 @@ DEPENDENCIES
   dynamic_form
   enju_resource_merge!
   factory_girl_rails (~> 1.2)
+  isbn-tools!
   jquery-rails
   rspec-rails
   sqlite3
