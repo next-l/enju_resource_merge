@@ -1,0 +1,22 @@
+ja:
+  activerecord:
+    models:
+      patron_merge_list: 人物・団体の統合リスト
+      patron_merge: 人物・団体の統合
+      series_statement_merge: シリーズ情報の統合
+      series_statement_merge_list: シリーズ情報統合リスト
+
+    attributes:
+      patron_merge_list:
+        title: タイトル
+      patron_merge:
+      series_statement_merge_list:
+        title: タイトル
+      series_statement_merge:
+
+  page:
+    merge: "統合する（取り消しはできません）"
+    merge_resource: "%{model}を統合する"
+  merge_list:
+    successfully_merged: "%{model}は正常に統合されました。"
+    specify_id: "%{model}のIDを指定してください。"
