@@ -4,13 +4,6 @@ source "http://rubygems.org"
 # Bundler will treat runtime dependencies like base dependencies, and
 # development dependencies will be added by default to the :development group.
 gemspec
-gem 'devise'
-gem 'cancan'
-gem 'dynamic_form'
-gem 'sunspot_rails', '1.3.0.rc4'
-gem 'attribute_normalizer', '~> 1.0'
-gem 'will_paginate'
-gem 'factory_girl_rails', "~> 1.2"
 
 # jquery-rails is used by the dummy application
 gem "jquery-rails"

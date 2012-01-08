@@ -1,0 +1,20 @@
+en:
+  activerecord:
+    models:
+      patron_merge_list: Patron merge list
+      patron_merge: Patron merge
+      series_statement_merge_list: Series statement merge list
+      series_statement_merge: Series statement merge
+
+    attributes:
+      patron_merge_list:
+        title: Title
+      patron_merge:
+      series_statement_merge_list:
+        title: Title
+      series_statement_merge:
+
+  merge_list:
+    successfully_merged: "%{model} were merged successfully."
+    specify_id: "Specify %{model} ID."
+
