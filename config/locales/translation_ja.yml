@@ -14,7 +14,9 @@ ja:
         title: タイトル
       series_statement_merge:
 
+  page:
+    merge: "統合する（取り消しはできません）"
+    merge_resource: "%{model}を統合する"
   merge_list:
     successfully_merged: "%{model}は正常に統合されました。"
     specify_id: "%{model}のIDを指定してください。"
-

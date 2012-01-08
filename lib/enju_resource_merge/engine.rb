@@ -1,8 +1,9 @@
 require 'devise'
 require 'cancan'
+require 'inherited_resources'
+require 'attribute_normalizer'
 require 'will_paginate'
 require 'sunspot_rails'
-require 'attribute_normalizer'
 require 'dynamic_form'
 
 module EnjuResourceMerge

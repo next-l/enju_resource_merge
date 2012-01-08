@@ -59,7 +59,7 @@ class PatronMergeListsController < ApplicationController
     respond_to do |format|
       if @patron_merge_list.update_attributes(params[:patron_merge_list])
         if params[:mode] == 'merge'
-          selected_patron = Patron.find(params[:selected_patron_id]) rescue nil
+          selected_patron = Patron.where(:id => params[:selected_patron_id]).first
           if selected_patron
             @patron_merge_list.merge_patrons(selected_patron)
             flash[:notice] = t('merge_list.successfully_merged', :model => t('activerecord.models.patron'))

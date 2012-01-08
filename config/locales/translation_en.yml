@@ -2,9 +2,9 @@ en:
   activerecord:
     models:
       patron_merge_list: Patron merge list
-      patron_merge: Patron merge
-      series_statement_merge_list: Series statement merge list
+      patron_merge: Patrom merge
       series_statement_merge: Series statement merge
+      series_statement_merge_list: Series statement merge list
 
     attributes:
       patron_merge_list:
@@ -14,7 +14,9 @@ en:
         title: Title
       series_statement_merge:
 
+  page:
+    merge: "Merge!"
+    merge_resource: "Merge %{model}"
   merge_list:
     successfully_merged: "%{model} were merged successfully."
     specify_id: "Specify %{model} ID."
-
