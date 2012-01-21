@@ -10,7 +10,6 @@ class PatronMergeList < ActiveRecord::Base
   def merge_patrons(selected_patron)
     self.patrons.each do |patron|
       Create.update_all(['patron_id = ?', selected_patron.id], ['patron_id = ?', patron.id])
-      Realize.update_all(['patron_id = ?', selected_patron.id], ['patron_id = ?', patron.id])
       Produce.update_all(['patron_id = ?', selected_patron.id], ['patron_id = ?', patron.id])
       Own.update_all(['patron_id = ?', selected_patron.id], ['patron_id = ?', patron.id])
       Donate.update_all(['patron_id = ?', selected_patron.id], ['patron_id = ?', patron.id])
