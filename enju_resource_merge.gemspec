@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency "devise"
   s.add_dependency "cancan"
   s.add_dependency "inherited_resources"
-  s.add_dependency "attribute_normalizer", "~> 1.0"
+  s.add_dependency "attribute_normalizer", "~> 1.1"
   s.add_dependency "sunspot_rails"
   s.add_dependency "sunspot_solr"
   s.add_dependency "dynamic_form"
