@@ -8,8 +8,14 @@ class SeriesStatementMergeList < ActiveRecord::Base
   end
 
   def merge_series_statements(selected_series_statement)
-    self.series_statements.each do |series_statement|
-      series_statement.destroy unless series_statement == selected_series_statement
+    series_statements.each do |series_statement|
+      unless series_statement == selected_series_statement
+        series_statement.manifestations.each do |manifestation|
+          manifestation.series_statement = selected_series_statement
+          manifestation.save!
+        end
+        series_statement.destroy
+      end
     end
   end
 end

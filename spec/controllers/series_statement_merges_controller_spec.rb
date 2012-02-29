@@ -4,10 +4,6 @@ describe SeriesStatementMergesController do
   fixtures :all
 
   describe "GET index" do
-    before(:each) do
-      FactoryGirl.create(:series_statement_merge)
-    end
-
     describe "When logged in as Administrator" do
       login_admin
 

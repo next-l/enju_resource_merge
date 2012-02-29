@@ -31,8 +31,10 @@ class SeriesStatementMergesController < ApplicationController
   # GET /series_statement_merges/new
   # GET /series_statement_merges/new.json
   def new
-    @series_statement_merge = SeriesStatementMerge.new
-    @series_statement_merge.series_statement = @series_statement
+    @series_statement_merge = SeriesStatementMerge.new(
+      :series_statement => @series_statement,
+      :series_statement_merge_list => @series_statement_merge_list
+    )
 
     respond_to do |format|
       format.html # new.html.erb
@@ -85,10 +87,5 @@ class SeriesStatementMergesController < ApplicationController
       format.html { redirect_to(series_statement_merges_url) }
       format.json { head :ok }
     end
-  end
-
-  private
-  def get_series_statement_merge_list
-    @series_statement_merge_list = SeriesStatementMerge_list.find(params[:series_statement_merge_list_id]) if params[:series_statement_merge_list_id]
   end
 end

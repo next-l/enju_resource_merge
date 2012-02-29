@@ -10,6 +10,11 @@ two:
   original_title: title2
   position: 2
 
+three:
+  id: 3
+  original_title: title3
+  position: 3
+
 
 
 # == Schema Information

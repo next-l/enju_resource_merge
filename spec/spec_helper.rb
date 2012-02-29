@@ -27,6 +27,18 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
 
   config.extend ControllerMacros, :type => :controller
+
+  $original_sunspot_session = Sunspot.session
+
+  config.before do
+    Sunspot.session = Sunspot::Rails::StubSessionProxy.new($original_sunspot_session)
+  end
+
+  config.before :each, :solr => true do
+    Sunspot::Rails::Tester.start_original_sunspot_session
+    Sunspot.session = $original_sunspot_session
+    #Sunspot.remove_all!
+  end
 end
 
 FactoryGirl.definition_file_paths << "#{::Rails.root}/../../spec/factories"

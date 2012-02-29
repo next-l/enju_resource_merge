@@ -7,7 +7,7 @@
   <div class="field">
     <%= f.label t('activerecord.models.series_statement') -%><br />
     <%- if @series_statement -%>
-      <%= link_to @series_statement.full_name, @series_statement -%>
+      <%= link_to @series_statement.original_title, @series_statement -%>
       <%= f.hidden_field :series_statement_id -%>
     <%- else -%>
       <%= f.text_field :series_statement_id -%>
