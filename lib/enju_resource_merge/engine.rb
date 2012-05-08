@@ -8,6 +8,6 @@ require 'dynamic_form'
 require 'acts_as_list'
 
 module EnjuResourceMerge
-  class Engine < Rails::Engine
+  class Engine < ::Rails::Engine
   end
 end
