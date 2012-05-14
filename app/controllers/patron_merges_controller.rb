@@ -68,7 +68,7 @@ class PatronMergesController < ApplicationController
       if @patron_merge.update_attributes(params[:patron_merge])
         flash[:notice] = t('controller.successfully_updated', :model => t('activerecord.models.patron_merge'))
         format.html { redirect_to(@patron_merge) }
-        format.json { head :ok }
+        format.json { head :no_content }
       else
         format.html { render :action => "edit" }
         format.json { render :json => @patron_merge.errors, :status => :unprocessable_entity }
@@ -83,7 +83,7 @@ class PatronMergesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(patron_merges_url) }
-      format.json { head :ok }
+      format.json { head :no_content }
     end
   end
 end

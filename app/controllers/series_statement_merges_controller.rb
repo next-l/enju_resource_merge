@@ -70,7 +70,7 @@ class SeriesStatementMergesController < ApplicationController
       if @series_statement_merge.update_attributes(params[:series_statement_merge])
         flash[:notice] = t('controller.successfully_updated', :model => t('activerecord.models.series_statement_merge'))
         format.html { redirect_to(@series_statement_merge) }
-        format.json { head :ok }
+        format.json { head :no_content }
       else
         format.html { render :action => "edit" }
         format.json { render :json => @series_statement_merge.errors, :status => :unprocessable_entity }
@@ -85,7 +85,7 @@ class SeriesStatementMergesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(series_statement_merges_url) }
-      format.json { head :ok }
+      format.json { head :no_content }
     end
   end
 end
