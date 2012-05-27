@@ -1,4 +1,5 @@
 class PatronMerge < ActiveRecord::Base
+  attr_accessible :patron_id, :patron_merge_list_id
   belongs_to :patron, :validate => true
   belongs_to :patron_merge_list, :validate => true
   validates_presence_of :patron, :patron_merge_list
