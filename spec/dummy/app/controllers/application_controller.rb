@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, :with => :render_404
 
   before_filter :set_locale
+
+  enju_resource_merge
   
   private
   def render_403
@@ -64,14 +66,6 @@ class ApplicationController < ActionController::Base
   def get_patron
     @patron = Patron.find(params[:patron_id]) if params[:patron_id]
     authorize! :show, @patron if @patron
-  end
-
-  def get_patron_merge_list
-    @patron_merge_list = PatronMergeList.find(params[:patron_merge_list_id]) if params[:patron_merge_list_id]
-  end
-
-  def get_series_statement_merge_list
-    @series_statement_merge_list = SeriesStatementMergeList.find(params[:series_statement_merge_list_id]) if params[:series_statement_merge_list_id]
   end
 end
 
