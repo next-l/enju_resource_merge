@@ -51,8 +51,7 @@ class PatronMergesController < ApplicationController
 
     respond_to do |format|
       if @patron_merge.save
-        flash[:notice] = t('controller.successfully_created', :model => t('activerecord.models.patron_merge'))
-        format.html { redirect_to(@patron_merge) }
+        format.html { redirect_to(@patron_merge, :notice => t('controller.successfully_created', :model => t('activerecord.models.patron_merge'))) }
         format.json { render :json => @patron_merge, :status => :created, :location => @patron_merge }
       else
         format.html { render :action => "new" }
@@ -66,8 +65,7 @@ class PatronMergesController < ApplicationController
   def update
     respond_to do |format|
       if @patron_merge.update_attributes(params[:patron_merge])
-        flash[:notice] = t('controller.successfully_updated', :model => t('activerecord.models.patron_merge'))
-        format.html { redirect_to(@patron_merge) }
+        format.html { redirect_to(@patron_merge, :notice => t('controller.successfully_updated', :model => t('activerecord.models.patron_merge'))) }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
