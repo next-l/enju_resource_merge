@@ -31,10 +31,9 @@ class SeriesStatementMergesController < ApplicationController
   # GET /series_statement_merges/new
   # GET /series_statement_merges/new.json
   def new
-    @series_statement_merge = SeriesStatementMerge.new(
-      :series_statement => @series_statement,
-      :series_statement_merge_list => @series_statement_merge_list
-    )
+    @series_statement_merge = SeriesStatementMerge.new
+    @series_statement_merge.series_statement = @series_statement
+    @series_statement_merge.series_statement_merge_list = @series_statement_merge_list
 
     respond_to do |format|
       format.html # new.html.erb
