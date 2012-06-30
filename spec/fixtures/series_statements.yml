@@ -9,6 +9,8 @@ two:
   id: 2
   original_title: title2
   position: 2
+  periodical: true
+  root_manifestation_id: 4
 
 three:
   id: 3
