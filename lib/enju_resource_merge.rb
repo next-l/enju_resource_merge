@@ -1,5 +1,4 @@
 require "enju_resource_merge/engine"
-require "will_paginate/array"
 
 module EnjuResourceMerge
   def self.included(base)

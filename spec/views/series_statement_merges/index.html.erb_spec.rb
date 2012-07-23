@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "series_statement_merges/index" do
   before(:each) do
-    assign(:series_statement_merges, [
+    assign(:series_statement_merges, Kaminari::paginate_array([
       stub_model(SeriesStatementMerge,
         :series_statement_id => 1,
         :series_statement_merge_list_id => 1
@@ -11,7 +11,7 @@ describe "series_statement_merges/index" do
         :series_statement_id => 1,
         :series_statement_merge_list_id => 2
       )
-    ].paginate(:page => 1))
+    ]).page(1))
     @ability = Object.new
     @ability.extend(CanCan::Ability)
     controller.stub(:current_ability) { @ability }

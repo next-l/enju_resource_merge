@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "series_statement_merge_lists/index" do
   before(:each) do
-    assign(:series_statement_merge_lists, [
+    assign(:series_statement_merge_lists, Kaminari::paginate_array([
       stub_model(SeriesStatementMergeList,
         :title => "Title",
         :created_at => Time.zone.now
@@ -11,7 +11,7 @@ describe "series_statement_merge_lists/index" do
         :title => "Title",
         :created_at => Time.zone.now
       )
-    ].paginate(:page => 1))
+    ]).page(1))
   end
 
   it "renders a list of series_statement_merge_lists" do
