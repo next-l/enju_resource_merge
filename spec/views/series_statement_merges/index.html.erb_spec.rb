@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe "series_statement_merges/index" do
+  fixtures :all
+
   before(:each) do
     assign(:series_statement_merges, Kaminari::paginate_array([
       stub_model(SeriesStatementMerge,
