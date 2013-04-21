@@ -61,7 +61,6 @@ class SeriesStatementMergeListsController < ApplicationController
         if params[:mode] == 'merge'
           selected_series_statement = SeriesStatement.find(params[:selected_series_statement_id]) rescue nil
           if selected_series_statement
-            @series_statement_merge_list.merge_series_statements(selected_series_statement)
             flash[:notice] = t('merge_list.successfully_merged', :model => t('activerecord.models.series_statement'))
           else
             flash[:notice] = t('merge_list.specify_id', :model => t('activerecord.models.series_statement'))
