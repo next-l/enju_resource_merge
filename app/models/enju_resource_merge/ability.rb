@@ -6,15 +6,15 @@ module EnjuResourceMerge
       case user.try(:role).try(:name)
       when 'Administrator'
         can :manage, [
-          PatronMerge,
-          PatronMergeList,
+          AgentMerge,
+          AgentMergeList,
           SeriesStatementMerge,
           SeriesStatementMergeList
         ]
       when 'Librarian'
         can :manage, [
-          PatronMerge,
-          PatronMergeList,
+          AgentMerge,
+          AgentMergeList,
           SeriesStatementMerge,
           SeriesStatementMergeList
         ]

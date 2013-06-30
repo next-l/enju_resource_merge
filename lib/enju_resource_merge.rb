@@ -14,8 +14,8 @@ module EnjuResourceMerge
   module InstanceMethods
     private
 
-    def get_patron_merge_list
-      @patron_merge_list = PatronMergeList.find(params[:patron_merge_list_id]) if params[:patron_merge_list_id]
+    def get_agent_merge_list
+      @agent_merge_list = AgentMergeList.find(params[:agent_merge_list_id]) if params[:agent_merge_list_id]
     end
 
     def get_series_statement_merge_list

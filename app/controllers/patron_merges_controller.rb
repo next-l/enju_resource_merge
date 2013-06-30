@@ -1,86 +1,86 @@
-class PatronMergesController < ApplicationController
+class AgentMergesController < ApplicationController
   load_and_authorize_resource
-  before_filter :get_patron, :get_patron_merge_list
+  before_filter :get_agent, :get_agent_merge_list
 
-  # GET /patron_merges
-  # GET /patron_merges.json
+  # GET /agent_merges
+  # GET /agent_merges.json
   def index
-    if @patron
-      @patron_merges = @patron.patron_merges.order('patron_merges.id').page(params[:page])
-    elsif @patron_merge_list
-      @patron_merges = @patron_merge_list.patron_merges.order('patron_merges.id').includes(:patron).page(params[:page])
+    if @agent
+      @agent_merges = @agent.agent_merges.order('agent_merges.id').page(params[:page])
+    elsif @agent_merge_list
+      @agent_merges = @agent_merge_list.agent_merges.order('agent_merges.id').includes(:agent).page(params[:page])
     else
-      @patron_merges = PatronMerge.page(params[:page])
+      @agent_merges = AgentMerge.page(params[:page])
     end
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render :json => @patron_merges }
+      format.json { render :json => @agent_merges }
     end
   end
 
-  # GET /patron_merges/1
-  # GET /patron_merges/1.json
+  # GET /agent_merges/1
+  # GET /agent_merges/1.json
   def show
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render :json => @patron_merge }
+      format.json { render :json => @agent_merge }
     end
   end
 
-  # GET /patron_merges/new
-  # GET /patron_merges/new.json
+  # GET /agent_merges/new
+  # GET /agent_merges/new.json
   def new
-    @patron_merge = PatronMerge.new
-    @patron_merge.patron = @patron
+    @agent_merge = AgentMerge.new
+    @agent_merge.agent = @agent
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render :json => @patron_merge }
+      format.json { render :json => @agent_merge }
     end
   end
 
-  # GET /patron_merges/1/edit
+  # GET /agent_merges/1/edit
   def edit
   end
 
-  # POST /patron_merges
-  # POST /patron_merges.json
+  # POST /agent_merges
+  # POST /agent_merges.json
   def create
-    @patron_merge = PatronMerge.new(params[:patron_merge])
+    @agent_merge = AgentMerge.new(params[:agent_merge])
 
     respond_to do |format|
-      if @patron_merge.save
-        format.html { redirect_to(@patron_merge, :notice => t('controller.successfully_created', :model => t('activerecord.models.patron_merge'))) }
-        format.json { render :json => @patron_merge, :status => :created, :location => @patron_merge }
+      if @agent_merge.save
+        format.html { redirect_to(@agent_merge, :notice => t('controller.successfully_created', :model => t('activerecord.models.agent_merge'))) }
+        format.json { render :json => @agent_merge, :status => :created, :location => @agent_merge }
       else
         format.html { render :action => "new" }
-        format.json { render :json => @patron_merge.errors, :status => :unprocessable_entity }
+        format.json { render :json => @agent_merge.errors, :status => :unprocessable_entity }
       end
     end
   end
 
-  # PUT /patron_merges/1
-  # PUT /patron_merges/1.json
+  # PUT /agent_merges/1
+  # PUT /agent_merges/1.json
   def update
     respond_to do |format|
-      if @patron_merge.update_attributes(params[:patron_merge])
-        format.html { redirect_to(@patron_merge, :notice => t('controller.successfully_updated', :model => t('activerecord.models.patron_merge'))) }
+      if @agent_merge.update_attributes(params[:agent_merge])
+        format.html { redirect_to(@agent_merge, :notice => t('controller.successfully_updated', :model => t('activerecord.models.agent_merge'))) }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
-        format.json { render :json => @patron_merge.errors, :status => :unprocessable_entity }
+        format.json { render :json => @agent_merge.errors, :status => :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /patron_merges/1
-  # DELETE /patron_merges/1.json
+  # DELETE /agent_merges/1
+  # DELETE /agent_merges/1.json
   def destroy
-    @patron_merge.destroy
+    @agent_merge.destroy
 
     respond_to do |format|
-      format.html { redirect_to(patron_merges_url) }
+      format.html { redirect_to(agent_merges_url) }
       format.json { head :no_content }
     end
   end

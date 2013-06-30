@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
-  resources :patrons do
-    resources :patron_merges
-    resources :patron_merge_lists
+  resources :agents do
+    resources :agent_merges
+    resources :agent_merge_lists
   end
-  resources :patron_merge_lists do
-    resources :patrons
-    resources :patron_merges
+  resources :agent_merge_lists do
+    resources :agents
+    resources :agent_merges
   end
-  resources :patron_merges
+  resources :agent_merges
 
   resources :series_statements do
     resources :series_statement_merges
