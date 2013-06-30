@@ -13,6 +13,17 @@
 
 ActiveRecord::Schema.define(:version => 20130421164124) do
 
+  create_table "accepts", :force => true do |t|
+    t.integer  "basket_id"
+    t.integer  "item_id"
+    t.integer  "librarian_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "accepts", ["basket_id"], :name => "index_accepts_on_basket_id"
+  add_index "accepts", ["item_id"], :name => "index_accepts_on_item_id"
+
   create_table "agent_import_files", :force => true do |t|
     t.integer  "parent_id"
     t.string   "content_type"
@@ -147,6 +158,39 @@ ActiveRecord::Schema.define(:version => 20130421164124) do
   add_index "agents", ["language_id"], :name => "index_agents_on_language_id"
   add_index "agents", ["required_role_id"], :name => "index_agents_on_required_role_id"
   add_index "agents", ["user_id"], :name => "index_agents_on_user_id", :unique => true
+
+  create_table "baskets", :force => true do |t|
+    t.integer  "user_id"
+    t.text     "note"
+    t.integer  "lock_version", :default => 0, :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  add_index "baskets", ["user_id"], :name => "index_baskets_on_user_id"
+
+  create_table "bookstores", :force => true do |t|
+    t.text     "name",             :null => false
+    t.string   "zip_code"
+    t.text     "address"
+    t.text     "note"
+    t.string   "telephone_number"
+    t.string   "fax_number"
+    t.string   "url"
+    t.integer  "position"
+    t.datetime "deleted_at"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  create_table "budget_types", :force => true do |t|
+    t.string   "name"
+    t.text     "display_name"
+    t.text     "note"
+    t.integer  "position"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "carrier_types", :force => true do |t|
     t.string   "name",         :null => false
@@ -326,6 +370,9 @@ ActiveRecord::Schema.define(:version => 20130421164124) do
     t.datetime "updated_at",                             :null => false
     t.datetime "deleted_at"
     t.string   "isil"
+    t.text     "opening_hour"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "libraries", ["library_group_id"], :name => "index_libraries_on_library_group_id"
@@ -437,7 +484,6 @@ ActiveRecord::Schema.define(:version => 20130421164124) do
     t.integer  "volume_number"
     t.integer  "issue_number"
     t.integer  "serial_number"
-    t.string   "ndc"
     t.integer  "content_type_id",                 :default => 1
     t.integer  "year_of_publication"
     t.text     "attachment_meta"
@@ -538,6 +584,24 @@ ActiveRecord::Schema.define(:version => 20130421164124) do
   add_index "realizes", ["agent_id"], :name => "index_realizes_on_agent_id"
   add_index "realizes", ["expression_id"], :name => "index_realizes_on_expression_id"
 
+  create_table "request_status_types", :force => true do |t|
+    t.string   "name",         :null => false
+    t.text     "display_name"
+    t.text     "note"
+    t.integer  "position"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "request_types", :force => true do |t|
+    t.string   "name",         :null => false
+    t.text     "display_name"
+    t.text     "note"
+    t.integer  "position"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "resource_import_files", :force => true do |t|
     t.integer  "parent_id"
     t.string   "content_type"
@@ -581,6 +645,20 @@ ActiveRecord::Schema.define(:version => 20130421164124) do
     t.integer  "position"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+  end
+
+  create_table "search_engines", :force => true do |t|
+    t.string   "name",             :null => false
+    t.text     "display_name"
+    t.string   "url",              :null => false
+    t.text     "base_url",         :null => false
+    t.text     "http_method",      :null => false
+    t.text     "query_param",      :null => false
+    t.text     "additional_param"
+    t.text     "note"
+    t.integer  "position"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "series_has_manifestations", :force => true do |t|
@@ -643,6 +721,60 @@ ActiveRecord::Schema.define(:version => 20130421164124) do
   add_index "series_statements", ["manifestation_id"], :name => "index_series_statements_on_manifestation_id"
   add_index "series_statements", ["series_statement_identifier"], :name => "index_series_statements_on_series_statement_identifier"
 
+  create_table "shelves", :force => true do |t|
+    t.string   "name",                            :null => false
+    t.text     "display_name"
+    t.text     "note"
+    t.integer  "library_id",   :default => 1,     :null => false
+    t.integer  "items_count",  :default => 0,     :null => false
+    t.integer  "position"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.datetime "deleted_at"
+    t.boolean  "closed",       :default => false, :null => false
+  end
+
+  add_index "shelves", ["library_id"], :name => "index_shelves_on_library_id"
+
+  create_table "subscribes", :force => true do |t|
+    t.integer  "subscription_id", :null => false
+    t.integer  "work_id",         :null => false
+    t.datetime "start_at",        :null => false
+    t.datetime "end_at",          :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "subscribes", ["subscription_id"], :name => "index_subscribes_on_subscription_id"
+  add_index "subscribes", ["work_id"], :name => "index_subscribes_on_work_id"
+
+  create_table "subscriptions", :force => true do |t|
+    t.text     "title",                           :null => false
+    t.text     "note"
+    t.integer  "user_id"
+    t.integer  "order_list_id"
+    t.datetime "deleted_at"
+    t.integer  "subscribes_count", :default => 0, :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+  end
+
+  add_index "subscriptions", ["order_list_id"], :name => "index_subscriptions_on_order_list_id"
+  add_index "subscriptions", ["user_id"], :name => "index_subscriptions_on_user_id"
+
+  create_table "user_groups", :force => true do |t|
+    t.string   "name"
+    t.string   "string"
+    t.text     "display_name"
+    t.text     "note"
+    t.integer  "position"
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+    t.datetime "deleted_at"
+    t.integer  "valid_period_for_new_user", :default => 0, :null => false
+    t.datetime "expired_at"
+  end
+
   create_table "user_has_roles", :force => true do |t|
     t.integer  "user_id"
     t.integer  "role_id"
@@ -651,11 +783,6 @@ ActiveRecord::Schema.define(:version => 20130421164124) do
   end
 
   create_table "users", :force => true do |t|
-    t.integer  "user_group_id"
-    t.integer  "required_role_id"
-    t.string   "username"
-    t.text     "note"
-    t.string   "locale"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "email",                  :default => "", :null => false
@@ -668,10 +795,29 @@ ActiveRecord::Schema.define(:version => 20130421164124) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "username"
+    t.string   "user_number"
+    t.string   "state"
+    t.string   "locale"
+    t.datetime "deleted_at"
+    t.datetime "expired_at"
+    t.integer  "library_id",             :default => 1,  :null => false
+    t.integer  "required_role_id",       :default => 1,  :null => false
+    t.integer  "user_group_id",          :default => 1,  :null => false
+    t.text     "note"
+    t.text     "keyword_list"
+    t.integer  "failed_attempts"
+    t.string   "unlock_token"
+    t.datetime "locked_at"
+    t.datetime "confirmed_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["unlock_token"], :name => "index_users_on_unlock_token", :unique => true
+  add_index "users", ["user_group_id"], :name => "index_users_on_user_group_id"
+  add_index "users", ["user_number"], :name => "index_users_on_user_number", :unique => true
+  add_index "users", ["username"], :name => "index_users_on_username", :unique => true
 
   create_table "versions", :force => true do |t|
     t.string   "item_type",  :null => false
