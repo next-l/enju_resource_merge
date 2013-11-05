@@ -369,8 +369,8 @@ ActiveRecord::Schema.define(:version => 20130421164124) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.datetime "deleted_at"
-    t.string   "isil"
     t.text     "opening_hour"
+    t.string   "isil"
     t.float    "latitude"
     t.float    "longitude"
   end
