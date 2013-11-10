@@ -22,5 +22,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rspec-rails"
   s.add_development_dependency "factory_girl_rails"
   s.add_development_dependency "sunspot_solr", "~> 2.1"
-  s.add_development_dependency "enju_leaf", "~> 1.1.0.rc6"
+  s.add_development_dependency "enju_leaf", "~> 1.1.0.rc7"
 end
