@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir["spec/**/*"] - Dir["spec/dummy/log/*"] - Dir["spec/dummy/solr/{data,pids}/*"]
 
   s.add_dependency "enju_seed", "~> 0.1.1.pre8"
-  s.add_dependency "enju_biblio", "~> 0.1.0.pre49"
+  s.add_dependency "enju_biblio", "~> 0.1.0.pre50"
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "rspec-rails"
