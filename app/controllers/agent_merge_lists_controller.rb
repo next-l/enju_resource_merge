@@ -1,5 +1,6 @@
 class AgentMergeListsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:index, :create]
+  authorize_resource only: [:index, :create]
 
   # GET /agent_merge_lists
   # GET /agent_merge_lists.json
@@ -39,7 +40,7 @@ class AgentMergeListsController < ApplicationController
   # POST /agent_merge_lists
   # POST /agent_merge_lists.json
   def create
-    @agent_merge_list = AgentMergeList.new(params[:agent_merge_list])
+    @agent_merge_list = AgentMergeList.new(agent_merge_list_params)
 
     respond_to do |format|
       if @agent_merge_list.save
@@ -57,7 +58,7 @@ class AgentMergeListsController < ApplicationController
   # PUT /agent_merge_lists/1.json
   def update
     respond_to do |format|
-      if @agent_merge_list.update_attributes(params[:agent_merge_list])
+      if @agent_merge_list.update_attributes(agent_merge_list_params)
         if params[:mode] == 'merge'
           selected_agent = Agent.where(:id => params[:selected_agent_id]).first
           if selected_agent
@@ -89,5 +90,10 @@ class AgentMergeListsController < ApplicationController
       format.html { redirect_to(agent_merge_lists_url) }
       format.json { head :no_content }
     end
+  end
+
+  private
+  def agent_merge_list_params
+    params.require(:agent_merge_list).permit(:title)
   end
 end
