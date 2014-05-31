@@ -1,10 +1,12 @@
 class AgentMergesController < ApplicationController
-  load_and_authorize_resource
-  before_filter :get_agent, :get_agent_merge_list
+  before_action :set_agent_merge, only: [:show, :edit, :update, :destroy]
+  before_action :get_agent, :get_agent_merge_list
+  after_action :verify_authorized
 
   # GET /agent_merges
   # GET /agent_merges.json
   def index
+    authorize AgentMerge
     if @agent
       @agent_merges = @agent.agent_merges.order('agent_merges.id').page(params[:page])
     elsif @agent_merge_list
@@ -22,16 +24,13 @@ class AgentMergesController < ApplicationController
   # GET /agent_merges/1
   # GET /agent_merges/1.json
   def show
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render :json => @agent_merge }
-    end
   end
 
   # GET /agent_merges/new
   # GET /agent_merges/new.json
   def new
     @agent_merge = AgentMerge.new
+    authorize @agent_merge
     @agent_merge.agent = @agent
 
     respond_to do |format|
@@ -47,7 +46,8 @@ class AgentMergesController < ApplicationController
   # POST /agent_merges
   # POST /agent_merges.json
   def create
-    @agent_merge = AgentMerge.new(params[:agent_merge])
+    @agent_merge = AgentMerge.new(agent_merge_params)
+    authorize @agent_merge
 
     respond_to do |format|
       if @agent_merge.save
@@ -64,7 +64,7 @@ class AgentMergesController < ApplicationController
   # PUT /agent_merges/1.json
   def update
     respond_to do |format|
-      if @agent_merge.update_attributes(params[:agent_merge])
+      if @agent_merge.update_attributes(agent_merge_params)
         format.html { redirect_to(@agent_merge, :notice => t('controller.successfully_updated', :model => t('activerecord.models.agent_merge'))) }
         format.json { head :no_content }
       else
@@ -83,5 +83,15 @@ class AgentMergesController < ApplicationController
       format.html { redirect_to(agent_merges_url) }
       format.json { head :no_content }
     end
+  end
+
+  private
+  def set_agent_merge
+    @agent_merge = AgentMerge.find(params[:id])
+    authorize @agent_merge
+  end
+
+  def agent_merge_params
+    params.require(:agent_merge).permit(:agent_id, :agent_merge_list_id)
   end
 end

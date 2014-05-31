@@ -7,16 +7,12 @@ module EnjuResourceMerge
       when 'Administrator'
         can :manage, [
           AgentMerge,
-          AgentMergeList,
-          SeriesStatementMerge,
-          SeriesStatementMergeList
+          AgentMergeList
         ]
       when 'Librarian'
         can :manage, [
           AgentMerge,
-          AgentMergeList,
-          SeriesStatementMerge,
-          SeriesStatementMergeList
+          AgentMergeList
         ]
       end
     end

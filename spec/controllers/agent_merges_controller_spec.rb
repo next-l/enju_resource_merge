@@ -13,7 +13,7 @@ describe AgentMergesController do
 
       it "assigns all agent_merges as @agent_merges" do
         get :index
-        assigns(:agent_merges).should eq(AgentMerge.all)
+        assigns(:agent_merges).should eq(AgentMerge.page(1))
       end
     end
 
@@ -22,7 +22,7 @@ describe AgentMergesController do
 
       it "assigns all agent_merges as @agent_merges" do
         get :index
-        assigns(:agent_merges).should eq(AgentMerge.all)
+        assigns(:agent_merges).should eq(AgentMerge.page(1))
       end
     end
 
@@ -31,7 +31,7 @@ describe AgentMergesController do
 
       it "should be forbidden" do
         get :index
-        assigns(:agent_merges).should be_empty
+        assigns(:agent_merges).should be_nil
         response.should be_forbidden
       end
     end
@@ -39,7 +39,7 @@ describe AgentMergesController do
     describe "When not logged in" do
       it "should be forbidden" do
         get :index
-        assigns(:agent_merges).should be_empty
+        assigns(:agent_merges).should be_nil
         response.should redirect_to(new_user_session_url)
       end
     end

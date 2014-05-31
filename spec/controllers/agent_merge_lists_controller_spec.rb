@@ -29,14 +29,14 @@ describe AgentMergeListsController do
 
       it "assigns empty as @agent_merge_lists" do
         get :index
-        assigns(:agent_merge_lists).should be_empty
+        assigns(:agent_merge_lists).should be_nil
       end
     end
 
     describe "When not logged in" do
       it "assigns empty as @agent_merge_lists" do
         get :index
-        assigns(:agent_merge_lists).should be_empty
+        assigns(:agent_merge_lists).should be_nil
       end
     end
   end
