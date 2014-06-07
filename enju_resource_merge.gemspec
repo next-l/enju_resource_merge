@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.name        = "enju_resource_merge"
   s.version     = EnjuResourceMerge::VERSION
   s.authors     = ["Kosuke Tanabe"]
-  s.email       = ["kosuke@e23.jp"]
+  s.email       = ["nabeta@fastmail.fm"]
   s.homepage    = "https://github.com/next-l/enju_resource_merge"
   s.summary     = "enju_resource_merge plugin"
   s.description = "Merge resource records for Next-L Enju"
