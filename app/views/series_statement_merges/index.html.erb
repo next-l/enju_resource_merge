@@ -1,5 +1,5 @@
 <div id="content_detail" class="ui-corner-all">
-<h1 class="title"><%= t('page.listing', :model => t('activerecord.models.series_statement_merge')) -%></h1>
+<h1 class="title"><%= t('page.listing', model: t('activerecord.models.series_statement_merge')) -%></h1>
 <div id="content_list">
 
 <table class="table table-striped index">
@@ -14,7 +14,7 @@
     <td><%= link_to series_statement_merge.series_statement_merge_list.title, series_statement_merge.series_statement_merge_list -%></td>
     <td><%= link_to t('page.show'), series_statement_merge -%></td>
     <td><%= link_to t('page.edit'), edit_series_statement_merge_path(series_statement_merge) -%></td>
-    <td><%= link_to t('page.destroy'), series_statement_merge, :data => {:confirm => t('page.are_you_sure')}, :method => :delete -%></td>
+    <td><%= link_to t('page.destroy'), series_statement_merge, data: {confirm: t('page.are_you_sure')}, method: :delete -%></td>
   </tr>
 <%- end -%>
 </table>
@@ -26,7 +26,7 @@
 <div id="submenu" class="ui-corner-all">
   <ul>
     <%- if @series_statement_merge_list -%>
-      <li><%= link_to t('page.add', :model => t('activerecord.models.series_statement')), series_statement_merge_list_series_statements_path(@series_statement_merge_list) -%></li>
+      <li><%= link_to t('page.add', model: t('activerecord.models.series_statement')), series_statement_merge_list_series_statements_path(@series_statement_merge_list) -%></li>
     <%- end -%>
   </ul>
 </div>

@@ -1,5 +1,5 @@
 <div id="content_detail" class="ui-corner-all">
-<h1 class="title"><%= t('page.listing', :model => t('activerecord.models.agent_merge')) -%></h1>
+<h1 class="title"><%= t('page.listing', model: t('activerecord.models.agent_merge')) -%></h1>
 <div id="content_list">
 
 <table class="table table-striped index">
@@ -14,7 +14,7 @@
     <td><%= link_to agent_merge.agent_merge_list.title, agent_merge.agent_merge_list -%></td>
     <td><%= link_to t('page.show'), agent_merge -%></td>
     <td><%= link_to t('page.edit'), edit_agent_merge_path(agent_merge) -%></td>
-    <td><%= link_to t('page.destroy'), agent_merge, :data => {:confirm => t('page.are_you_sure')}, :method => :delete -%></td>
+    <td><%= link_to t('page.destroy'), agent_merge, data: {confirm: t('page.are_you_sure')}, method: :delete -%></td>
   </tr>
 <%- end -%>
 </table>
@@ -26,7 +26,7 @@
 <div id="submenu" class="ui-corner-all">
   <ul>
     <%- if @agent_merge_list -%>
-      <li><%= link_to t('page.add', :model => t('activerecord.models.agent')), agent_merge_list_agents_path(@agent_merge_list) -%></li>
+      <li><%= link_to t('page.add', model: t('activerecord.models.agent')), agent_merge_list_agents_path(@agent_merge_list) -%></li>
     <%- end -%>
   </ul>
 </div>

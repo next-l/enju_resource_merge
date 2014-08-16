@@ -15,7 +15,7 @@ class SeriesStatementMergesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render :json => @series_statement_merges }
+      format.json { render json: @series_statement_merges }
     end
   end
 
@@ -24,7 +24,7 @@ class SeriesStatementMergesController < ApplicationController
   def show
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render :json => @series_statement_merge }
+      format.json { render json: @series_statement_merge }
     end
   end
 
@@ -37,7 +37,7 @@ class SeriesStatementMergesController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render :json => @series_statement_merge }
+      format.json { render json: @series_statement_merge }
     end
   end
 
@@ -52,12 +52,12 @@ class SeriesStatementMergesController < ApplicationController
 
     respond_to do |format|
       if @series_statement_merge.save
-        flash[:notice] = t('controller.successfully_created', :model => t('activerecord.models.series_statement_merge'))
+        flash[:notice] = t('controller.successfully_created', model: t('activerecord.models.series_statement_merge'))
         format.html { redirect_to(@series_statement_merge) }
-        format.json { render :json => @series_statement_merge, :status => :created, :location => @series_statement_merge }
+        format.json { render json: @series_statement_merge, status: :created, location: @series_statement_merge }
       else
-        format.html { render :action => "new" }
-        format.json { render :json => @series_statement_merge.errors, :status => :unprocessable_entity }
+        format.html { render action: "new" }
+        format.json { render json: @series_statement_merge.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -67,12 +67,12 @@ class SeriesStatementMergesController < ApplicationController
   def update
     respond_to do |format|
       if @series_statement_merge.update_attributes(params[:series_statement_merge])
-        flash[:notice] = t('controller.successfully_updated', :model => t('activerecord.models.series_statement_merge'))
+        flash[:notice] = t('controller.successfully_updated', model: t('activerecord.models.series_statement_merge'))
         format.html { redirect_to(@series_statement_merge) }
         format.json { head :no_content }
       else
-        format.html { render :action => "edit" }
-        format.json { render :json => @series_statement_merge.errors, :status => :unprocessable_entity }
+        format.html { render action: "edit" }
+        format.json { render json: @series_statement_merge.errors, status: :unprocessable_entity }
       end
     end
   end

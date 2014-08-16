@@ -1,5 +1,5 @@
 <div id="content_detail" class="ui-corner-all">
-<h1 class="title"><%= t('page.new', :model => t('activerecord.models.agent_merge')) -%></h1>
+<h1 class="title"><%= t('page.new', model: t('activerecord.models.agent_merge')) -%></h1>
 <div id="content_list">
 
 <%= form_for(@agent_merge) do |f| -%>
@@ -18,9 +18,9 @@
     <%= f.label t('activerecord.models.agent_merge_list') -%><br />
     <%- if @agent_merge_list -%>
       <%= link_to @agent_merge_list.title, agent_merge_list_path(@agent_merge_list) -%>
-      <%= f.hidden_field :agent_merge_list_id, :value => @agent_merge_list.id -%>
+      <%= f.hidden_field :agent_merge_list_id, value: @agent_merge_list.id -%>
     <%- else -%>
-      <%= f.text_field :agent_merge_list_id, :value => params[:agent_merge_list_id] -%>
+      <%= f.text_field :agent_merge_list_id, value: params[:agent_merge_list_id] -%>
     <%- end -%>
   </div>
 
