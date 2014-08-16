@@ -17,7 +17,7 @@ class AgentMergesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render :json => @agent_merges }
+      format.json { render json: @agent_merges }
     end
   end
 
@@ -35,7 +35,7 @@ class AgentMergesController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render :json => @agent_merge }
+      format.json { render json: @agent_merge }
     end
   end
 
@@ -51,11 +51,11 @@ class AgentMergesController < ApplicationController
 
     respond_to do |format|
       if @agent_merge.save
-        format.html { redirect_to(@agent_merge, :notice => t('controller.successfully_created', :model => t('activerecord.models.agent_merge'))) }
-        format.json { render :json => @agent_merge, :status => :created, :location => @agent_merge }
+        format.html { redirect_to(@agent_merge, notice: t('controller.successfully_created', model: t('activerecord.models.agent_merge'))) }
+        format.json { render json: @agent_merge, status: :created, location: @agent_merge }
       else
-        format.html { render :action => "new" }
-        format.json { render :json => @agent_merge.errors, :status => :unprocessable_entity }
+        format.html { render action: "new" }
+        format.json { render json: @agent_merge.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -65,11 +65,11 @@ class AgentMergesController < ApplicationController
   def update
     respond_to do |format|
       if @agent_merge.update_attributes(agent_merge_params)
-        format.html { redirect_to(@agent_merge, :notice => t('controller.successfully_updated', :model => t('activerecord.models.agent_merge'))) }
+        format.html { redirect_to(@agent_merge, notice: t('controller.successfully_updated', model: t('activerecord.models.agent_merge'))) }
         format.json { head :no_content }
       else
-        format.html { render :action => "edit" }
-        format.json { render :json => @agent_merge.errors, :status => :unprocessable_entity }
+        format.html { render action: "edit" }
+        format.json { render json: @agent_merge.errors, status: :unprocessable_entity }
       end
     end
   end
